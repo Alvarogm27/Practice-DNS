@@ -1,0 +1,5 @@
+
+zone "sri.test" {
+	type master;
+	file "/var/lib/bind/dns.sri";
+};
