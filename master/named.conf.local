@@ -2,4 +2,5 @@
 zone "sri.test" {
 	type master;
 	file "/var/lib/bind/dns.sri";
+	allow-transfer { 192.168.57.10; };
 };

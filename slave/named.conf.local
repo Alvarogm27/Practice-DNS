@@ -1,0 +1,6 @@
+
+zone "sri.test" {
+	type slave;
+	file "/var/lib/bind/dns.sri"; 
+	masters { 192.168.57.10; };
+};
