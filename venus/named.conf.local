@@ -1,11 +1,11 @@
 zone "sistema.test" {
     type slave;
-    masters { 192.168.57.10; }; // IP del maestro
-    file "/var/lib/bind/db.sistema.test";
+    file "/var/lib/bind/sistema.test.dns";
+    masters { 192.168.57.103; };
 };
 
 zone "57.168.192.in-addr.arpa" {
     type slave;
-    masters { 192.168.57.10; }; // IP del maestro
-    file "/var/lib/bind/db.57.168.192";
+    file "/var/lib/bind/sistema.test.rev";
+    masters { 192.168.57.103; };
 };
