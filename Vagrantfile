@@ -16,8 +16,9 @@ Vagrant.configure("2") do |config|
       cp -v /vagrant/named /etc/default
       cp -v /vagrant/named.conf.options /etc/bind
       cp -v /vagrant/tierra/named.conf.local /etc/bind
-      cp -v /vagrant/sistema.test.rev /var/lib/bind
-      cp -v /vagrant/sistema.test.dns /var/lib/bind
+      cp -v /vagrant/sistema.test.rev /var/lib/bind/
+      cp -v /vagrant/sistema.test.dns /var/lib/bind/
+      chown :bind /var/lib/bind/*
       systemctl restart named
       SHELL
   end
