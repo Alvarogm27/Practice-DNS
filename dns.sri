@@ -1,19 +1,16 @@
 
-$TTL	86400
-$ORIGIN sri.test.
-@	IN	SOA	master root.sri.test. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			  86400 )	; Negative Cache TTL
-;
-@					IN	NS	master
-@ 					IN 	NS	slave
-@					IN 	A	192.168.57.10
-master				IN	A	192.168.57.10
-slave 				IN 	A 	192.168.57.11
-www 				IN  A   192.168.57.100
-www 				IN  A   192.168.57.101
-p01.a112			IN 	A 	192.168.57.200
-p02.a112			IN 	A 	192.168.57.201
+$TTL 2h
+@   IN  SOA tierra.sistema.test. root.sistema.test. (
+        2024102001  ; Serial
+        2h          ; Refresh
+        15m         ; Retry
+        1w          ; Expire
+        2h )        ; Negative Cache TTL
+
+@       IN  NS  tierra.sistema.test.
+@       IN  NS  venus.sistema.test.
+
+tierra  IN  A   192.168.57.10
+venus   IN  A   192.168.57.11
+ns1     IN  CNAME tierra.sistema.test.
+ns2     IN  CNAME venus.sistema.test.
