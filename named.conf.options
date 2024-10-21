@@ -1,23 +1,21 @@
-acl localnet {
- 192.168.57.0/24;
-};
-acl trusted {
-	192.168.57.0/24;
-};
 options {
-	directory "/var/cache/bind";
+    directory "/var/cache/bind";
 
- allow-query { !trusted; };
+    // Solo IPv4
+    listen-on { any; };
+    listen-on-v6 { none; };
 
- forwarders {
-		8.8.8.8;
- };
+    // Seguridad DNS
+    dnssec-validation yes;
 
-	//========================================================================
-	// If BIND logs error messages about the root key being expired,
-	// you will need to update your keys.  See https://www.isc.org/bind-keys
-	//========================================================================
-	dnssec-validation no;
+    // Control de acceso
+    allow-recursion { localhost; 192.168.57.0/24; };
+    allow-query { any; };
+    allow-transfer { none; };
 
-	listen-on-v6 { any; };
+    // Reenvío a OpenDNS
+    forwarders {
+        208.67.222.222;
+    };
 };
+
