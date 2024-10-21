@@ -1,21 +1,30 @@
+acl trusted {
+	192.168.57.0/24;
+	127.0.0.0/8;
+};
+
+
+acl listen-addresses {
+	192.168.57.103;
+	192.168.57.102;
+	127.0.0.1;
+};
+
+
 options {
-    directory "/var/cache/bind";
+	directory "/var/cache/bind";
 
-    // Solo IPv4
-    listen-on { any; };
-    listen-on-v6 { none; };
+	allow-query { trusted; };
 
-    // Seguridad DNS
-    dnssec-validation yes;
+	forwarders {
+		208.67.222.222;
+	};
 
-    // Control de acceso
-    allow-recursion { localhost; 192.168.57.0/24; };
-    allow-query { any; };
-    allow-transfer { none; };
+	listen-on port 53 { listen-addresses; };
 
-    // Reenvío a OpenDNS
-    forwarders {
-        208.67.222.222;
-    };
+	recursion yes;
+	allow-recursion { trusted; };
+
+	dnssec-validation yes;
 };
 
